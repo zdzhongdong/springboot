@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../static/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+内容：<input type="text" id="neirong">
+<input type="button" value="提交" onclick="aaa()">
+
+<div id="app">
+  <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+  <a href="/templates/add.html">跳转到新增页面</a>
+</div>
+
+<script type="text/javascript">
+new Vue({
+	el:'#app',
+	 data:{
+		 treeData: [{
+		          label: '一级 1',
+		          children: [{
+		            label: '二级 1-1',
+		            children: [{
+		              label: '三级 1-1-1'
+		            }]
+		          }]
+		        }, {
+		          label: '一级 2',
+		          children: [{
+		            label: '二级 2-1',
+		            children: [{
+		              label: '三级 2-1-1'
+		            }]
+		          }, {
+		            label: '二级 2-2',
+		            children: [{
+		              label: '三级 2-2-1'
+		            }]
+		          }]
+		        }, {
+		          label: '一级 3',
+		          children: [{
+		            label: '二级 3-1',
+		            children: [{
+		              label: '三级 3-1-1'
+		            }]
+		          }, {
+		            label: '二级 3-2',
+		            children: [{
+		              label: '三级 3-2-1'
+		            }]
+		          }]
+		        }],
+		        defaultProps: {
+		          children: 'children',
+		          label: 'label'
+		        }
+		      },
+		      
+		      methods: {
+		          handleNodeClick(data) {
+		            console.log(data);
+		          }
+		        }	      
+})
+/* $("#ti").click(
+		alert(1);
+$.getJSON("/hello",function(data){
+	alert(data);
+})) */
+function aaa(){
+ var text = $("#neirong").val(); 
+
+$.getJSON("/hello",{id:text},function(data){
+	alert(data);
+})
+}
+
+</script>
+</body>
+</html>
